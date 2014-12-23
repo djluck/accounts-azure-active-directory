@@ -1,2 +1,4 @@
 .build*
 versions.json
+.meteor/local
+.meteor/meteorite
