@@ -11,7 +11,7 @@ Package.onUse(function(api) {
 // Export Accounts (etc) to packages using this one.
     api.imply('accounts-base', ['client', 'server']);
     api.use('accounts-oauth@1.1.2', ['client', 'server']);
-    api.use('wiseguyeh:azure-active-directory@0.1.2', ['client', 'server']);
+    api.use('wiseguyeh:azure-active-directory@0.1.3', ['client', 'server']);
 
     api.addFiles("azure_ad.js");
 });
