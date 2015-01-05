@@ -14,10 +14,6 @@ if (Meteor.isClient) {
 } else {
     Accounts.addAutopublishFields({
         forLoggedInUser: _.map(
-            // publish access token since it can be used from the client (if
-            // transmitted over ssl or on
-            // localhost). https://developers.google.com/accounts/docs/OAuth2UserAgent
-            // refresh token probably shouldn't be sent down.
             AzureAd.whitelistedFields.concat(['accessToken', 'expiresAt']), // don't publish refresh token
             function (subfield) { return 'services.azureAd.' + subfield; }),
 
