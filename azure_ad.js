@@ -19,12 +19,12 @@ if (Meteor.isClient) {
             // localhost). https://developers.google.com/accounts/docs/OAuth2UserAgent
             // refresh token probably shouldn't be sent down.
             AzureAd.whitelistedFields.concat(['accessToken', 'expiresAt']), // don't publish refresh token
-            function (subfield) { return 'services.azuread.' + subfield; }),
+            function (subfield) { return 'services.azureAd.' + subfield; }),
 
         forOtherUsers: _.map(
             // even with autopublish, no legitimate web app should be
             // publishing all users' emails
             _.without(AzureAd.whitelistedFields, 'mail', 'userPrincipleName'),
-            function (subfield) { return 'services.azuread.' + subfield; })
+            function (subfield) { return 'services.azureAd.' + subfield; })
     });
 }
