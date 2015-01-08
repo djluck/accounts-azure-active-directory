@@ -12,15 +12,19 @@ if (Meteor.isClient) {
         AzureAd.requestCredential(options, credentialRequestCompleteCallback);
     };
 } else {
-    Accounts.addAutopublishFields({
-        forLoggedInUser: _.map(
-            AzureAd.whitelistedFields.concat(['accessToken', 'expiresAt']), // don't publish refresh token
-            function (subfield) { return 'services.azureAd.' + subfield; }),
+    var fieldsForLoggedInusers = _.map(
+        AzureAd.whitelistedFields.concat(['accessToken', 'expiresAt']), // don't publish refresh token
+        function (subfield) { return 'services.azureAd.' + subfield; }
+    );
+    var fieldsForOtherUsers = _.map(
+        // even with autopublish, no legitimate web app should be
+        // publishing all users' emails
+        _.without(AzureAd.whitelistedFields, 'mail', 'userPrincipleName'),
+        function (subfield) { return 'services.azureAd.' + subfield; }
+    );
 
-        forOtherUsers: _.map(
-            // even with autopublish, no legitimate web app should be
-            // publishing all users' emails
-            _.without(AzureAd.whitelistedFields, 'mail', 'userPrincipleName'),
-            function (subfield) { return 'services.azureAd.' + subfield; })
+    Accounts.addAutopublishFields({
+        forLoggedInUser: fieldsForLoggedInusers,
+        forOtherUsers: fieldsForOtherUsers
     });
 }
