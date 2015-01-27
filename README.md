@@ -1,8 +1,11 @@
-# Accounts-Azure-Active-Directory
-Adds support for authentication using Azure Active Directory and the OAuth 2.0 protocol, allowing meteor applications to authenticate against (copies of) an organisation's Active Directory.
+#What does this package do
+Adds single sign-on integration with Azure Active Directory.
+
+#What does this package allow me to do?
+This package was written to allow the development of  meteor apps for the (windows) enterprise world. It seems to me that a large barrier to corporate acceptance of meteor having to remember a million different sets of credentials. This package allows users to authenticate using their Active Directory credentials.
+
+#What's Azure Active Directory
+Essentially it's Active Directory in the cloud. You can ask your Ops/Systems team to create a mirror image of your enterprise installation or sign up for a free account and add your users manually.
 
 # Configuration
-Due to the number of steps in setting up an Azure Active Directory and adding an application against it, the in-app configuration guidelines are necessarily short on detail. I recommend reading the following documentation should you get stuck:
-
- - http://msdn.microsoft.com/en-us/library/azure/dn132599.aspx#BKMK_Adding
- - https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet (read step 3, modifying the specified parameters for your own application)
+Please refer to the [wiki documentation](https://github.com/djluck/accounts-azure-active-directory/wiki/Getting-accounts-azure-active-directory-up-and-running) for a guide to configuring this package.
